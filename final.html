@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carousel - simplest version</title>
+  <!-- <link rel="stylesheet" type="text/css" href="furniture.css"> -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+   <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h2 style="text-align:center"> Simple Jquery Slider </h2>
+    <div class="wrapper">
+            <div class="jcarousel-wrapper">
+                <div class="jcarousel">
+                    <ul>
+    <li><img src="http://www.mylifeb.com/userdata/articles/net_articles_pics/GvwNIXBKwiVwiotVUydI5gd7oK4J9JDNkD4/how-to-use-the-internet-to-make-money%20(1).jpg" alt="" width="600" height="400">
+     <h3>Huge Number of Viral Campaigns</h3>
+      <p>These campaigns and posts are updated daily ensuring maximum reach and revenue</p> 
+    </li>
+    <li><img src="http://www.softarket.com/wp-content/uploads/2014/12/viral_advertising_campaign.png" alt="" width="600" height="400" >
+        <h3>Weekly Payments</h3>
+        <p>No more waiting for the cash. We pay on aweekly basis, isn't that fun?</p>
+    </li>
+    <li><img src="http://economictimes.indiatimes.com/photo/48083893.cms" alt="" width="600" height="400">
+     <h3>Personal Touch</h3>
+      <p>Our executives will help you through the entire setup process and answer all your queries</p>
+    </li>
+    <li><img src="http://dalwynhrservices.in/oc-content/uploads/0/31.jpg" alt="" width="600" height="400" >
+    <h3>Maximum RPM</h3>
+    <p>Our unique technology ensures that you get the maximum RPM for your traffic</p>
+    </li>
+  </ul>
+  </div>
+   <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+   <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+   <div style="text-align:center" class="pagination">
+    <span class="dot" id="1" ></span> 
+    <span class="dot" id ="2" ></span> 
+    <span class="dot" id="3" ></span> 
+    <span class="dot" id ="4" ></span> 
+    </div>
+   </div>
+   </div>
+
+
+<script>
+ $(window).ready(function() {
+ //an image width in pixels 
+        var imageWidth = 600;
+        var currentImage = 0;
+    
+
+        //DOM and all content is loaded 
+       
+            
+            var currentImage = 0;
+
+            //set image count 
+            var allImages = $('.jcarousel li img').length;
+            console.log(allImages);
+            
+            //setup slideshow frame width
+            $('.jcarousel ul').width(allImages*imageWidth);
+           
+            //attach click event to slideshow buttons
+            $('.jcarousel-control-next').click(function(){
+                
+                //increase image counter
+                currentImage++;
+                //if we are at the end let set it to 0
+                if(currentImage>=allImages) currentImage = 0;
+
+                //calcualte and set position
+                setFrameLeft(currentImage);
+
+            });
+
+            $('.jcarousel-control-prev').click(function(){
+                
+                //decrease image counter
+                currentImage--;
+                //if we are at the end let set it to 0
+                if(currentImage<0) currentImage = allImages-1;
+                //calcualte and set position
+                setFrameLeft(currentImage);
+
+            });
+           
+       
+
+        //calculate the slideshow frame position and animate it to the new position
+        function setFrameLeft(pos){
+            //calculate position
+            var px = imageWidth*pos*-1;
+            //set ul left position
+            $('.jcarousel ul').animate({
+                left: px
+            }, 300);
+        }
+        setInterval(function(){ 
+            //increase image counter
+                /*currentImage++;
+                //if we are at the end let set it to 0
+                if(currentImage>=allImages) currentImage = 0;
+
+                //calcualte and set position
+                setFrameLeft(currentImage);*/
+                 $('.jcarousel-control-next').trigger("click");
+
+
+         }, 3000);
+        $('.dot').click(function(event){
+            id = $(this).attr('id');
+            setFrameLeft(id);
+        });
+        /*function rotate() {
+        $('.jcarousel-control-next').click();
+        }​*/
+ });
+
+  
+</script>
+</body>
+</html>
